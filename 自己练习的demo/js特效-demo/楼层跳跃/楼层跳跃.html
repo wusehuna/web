@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>楼层跳跃的demo</title>
+    <style>
+    *{
+            margin:0;
+            padding:0;
+    }
+    body,html{
+        height: 100%;
+    }
+    ul,ol{
+        list-style: none;
+    }
+    ol{
+        position: fixed;
+        top:80px;
+        left:50px;
+    }
+    ol li{
+        width: 50px;
+        height: 60px;
+        border:1px solid #000;
+        text-align: center;
+        font:700 14px/60px  "Microsoft YaHei";
+        cursor: pointer;
+        
+    }
+    ul li{
+        height: 100%;
+        font:700 50px/740px "Microsoft YaHei";
+        text-align: center;
+    }
+    ul{
+        height: 100%;
+    }
+    </style>
+   
+    
+</head>
+<body>
+    <ul>
+        <li>鞋子区域</li>
+        <li>裤子区域</li>
+        <li>袜子区域</li>
+        <li>裙子区域</li>
+        <li>帽子区域</li>
+    </ul>
+    <ol>
+        <li>鞋子</li>
+        <li>裤子</li>
+        <li>袜子</li>
+        <li>裙子</li>
+        <li>帽子</li>
+    </ol>
+    <script src="animate.js"></script>
+    <script>
+            //1.获取事件源以及相关元素
+            var ol = document.getElementsByTagName("ol")[0];
+            var ul = document.getElementsByTagName("ul")[0];
+            var ulLiArr = ul.children;
+            var olLiArr = ol.children;
+            var target=0;
+            var leader=0;
+            var timer=null;
+            //2.创建一个数组，循环把颜色绑定给相对应的ul和ol
+            var colorArr = ["pink", "skyblue", "bisque", "palevioletred", "orange"];
+             for(var i=0;i<colorArr.length;i++){ 
+                 ulLiArr[i].style.backgroundColor=colorArr[i];
+                 olLiArr[i].style.backgroundColor=colorArr[i];
+                 olLiArr[i].index = i;
+                 olLiArr[i].onclick=function(){
+                     target=ulLiArr[this.index].offsetTop;
+                     //要用定时器先清除定时器
+                     clearInterval(timer);
+                     //3.利用缓动动画原理使得屏幕缓慢运动
+                     timer=setInterval(function(){
+                         //3.1 获取步长
+                         var step=(target-leader)/10;
+                         //3.2 二次处理步长
+                         step=step>0?Math.ceil(step):Math.floor(step);
+                         //3.3 屏幕滑动
+                         leader=leader+step;
+                         window.scrollTo(0,leader);
+                         //3.4清除定时器
+                        if(Math.abs(target-leader)<=Math.abs(step)){
+                         window.scrollTo(0,target);
+                         clearInterval(timer);
+                    }
+                     },25);
+                     
+                 }
+            }
+    </script>
+</body>
+</html>

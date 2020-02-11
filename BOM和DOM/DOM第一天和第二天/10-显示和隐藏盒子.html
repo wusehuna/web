@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>显示和隐藏盒子</title>
+</head>
+<style>
+button{
+    margin:10px;
+}
+div{
+    height: 200px;
+    width: 200px;
+    background-color: skyblue;
+    padding:10px;
+    margin:10px;
+    /* font的连写：font-weight font-size/line-height font-family */
+    font:bold 16px/30px microsoft Yahei;
+    }
+ .hide{
+ display: none !important;
+ }
+ .show{
+     display: block;
+ }
+</style>
+
+<body>
+   <button id="btn">隐藏</button>
+   <div class="close">愿我如星君如月，夜夜流光相皎洁。</div>
+</body>
+<script>
+    //1.获取事件源
+    var btn = document.getElementById("btn");
+    var div = document.getElementsByClassName("close")[0];
+    //2.绑定事件
+    btn.onclick = function () {
+        //3.书写事件驱动程序
+        //判断btn的innerHTML属性值，如果是“隐藏”，则隐藏盒子，并修改按钮的内容为显示
+       //反之，如果btn的innerHTML的值为“显示”，则显示盒子，并修改按钮的内容为隐藏
+       if(btn.innerHTML==="隐藏"){
+           div.className = "hide";
+           //修改button上的文字（innerHTML）;
+           btn.innerHTML="显示";
+       }else{
+            div.className = "show";
+            //修改button上的文字（innerHTML）;
+            btn.innerHTML="隐藏";
+       }
+        
+    }
+</script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>显示和隐藏盒子</title>
+    <style>
+        /* 如果类选择器的话，再次显示就会把盒子的样式取消掉 */
+    div{
+       height: 100px;
+       width: 100px;
+       background-color: skyblue;
+       padding:10px;
+       margin:10px;
+       /* font的连写：font-weight font-size/line-height font-family */
+       /* font:bold 16px/30px microsoft Yahei; */
+
+    }
+    .hide{
+    display: none !important;
+    }
+    .show{
+    display: block;
+    }
+    </style>
+    <script>
+    window.onload=function(){
+        var btn=document.getElementsByTagName("button")[0];
+        var box=document.getElementsByClassName("box")[0];
+        btn.onclick=function(){
+              if(btn.innerHTML==="隐藏"){
+              box.className = "hide";
+              //修改button上的文字（innerHTML）;
+              btn.innerHTML="显示";
+              }else{
+              box.className = "show";
+              //修改button上的文字（innerHTML）;
+              btn.innerHTML="隐藏";
+              }
+        }
+    }
+    </script>
+</head>
+<body>
+    <button>隐藏</button>
+     <div class="box">
+         山有木兮木有枝，心悦君兮君不知
+     </div>
+</body>
+</html>

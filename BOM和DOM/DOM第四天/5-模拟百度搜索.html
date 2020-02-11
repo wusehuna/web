@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .box {
+            width: 500px;
+            margin: 200px auto;
+        }
+        ul {
+            width: 392px;
+            padding: 5px;
+            list-style: none;
+            border: 1px solid red;
+        }
+        li:hover {
+            background-color: red;
+        }
+        input {
+            width: 400px;
+        }
+        button {
+            width: 70px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <input type="text"/>
+    <button>搜索</button>
+    <!--<ul>-->
+    <!--<li>aaaa</li>-->
+    <!--<li>bbb</li>-->
+    <!--<li>ccc</li>-->
+    <!--</ul>-->
+</div>
+<script>
+    //模拟数据库获取数据
+    var arr = ["a","ab","abc","abcd","aa","aaa"];
+    //获取事件源
+    var box=document.getElementsByTagName("div")[0];
+    var inp=box.children[0];
+    //绑定事件
+    inp.onkeyup=function(){
+        var newArr=[];
+        for(var i=0;i<arr.length;i++){
+            //判断inp中的值是否是以arr数组中的值开头
+            //如果是的化，则将它放进newArr数组中
+            var val=this.value;
+            if(arr[i].indexOf(val)===0){
+                newArr.push("<li>"+arr[i]+"</li>");
+            }
+     }
+
+
+    //bug1：每次创建新的ul之前，先删除旧的ul
+    if(box.children[2]){
+        box.removeChild(box.children[2]);
+    }
+    //Bug2.如果input中内容为空，那么久不能在生成ul了。
+    //如果input为空，那么切断函数
+
+    //Bug3.如果arr数组中没有以input为开头的元素。那么切断函数
+    //newArr的长度为0，就能证明以input内容为开头的元素，在arr中不存在
+    if(this.value.length === 0 || newArr.length === 0){
+        //切断函数(不在产生新的ul)
+        return;
+    }
+        var str=newArr.join("");
+        var ul=document.createElement("ul");
+        ul.innerHTML=str;
+        box.appendChild(ul);
+    }
+
+</script>
+</body>
+</html>

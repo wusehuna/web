@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>隔行变色</title>
+</head>
+<style>
+ul{
+    width: 1210px;
+    margin: 100px auto;
+}
+li{
+    height: 34px;
+   font:600 16px/34px "simsun";
+}
+ul,li{
+    list-style: none;
+}
+</style>
+<script>
+window.onload=function(){
+    //需求：隔行变色
+    //步骤：1.获取事件源
+    //  var liArr=document.getElementsByTagName("li");
+    //  for(var i=0;i<liArr.length;i++){
+    //      if(i%2===0){
+    //          liArr[i].style.backgroundColor="#ccc";
+    //      }
+    //  }
+    //需求：使用childNodes进行隔行变色
+    var ul=document.getElementsByTagName("ul")[0];
+    var liArr=ul.childNodes;
+    //把元素节点放入一个新的数组
+    var newArr=[];
+    for(var i=0;i<liArr.length;i++){
+        if(liArr[i].nodeType===1){
+           newArr.push(liArr[i]);
+        }
+    }
+    for(var i=0;i<newArr.length;i++){
+        if(i%2===0){
+            newArr[i].style.backgroundColor="yellow";
+        }
+    }
+}
+</script>
+<body>
+        <ul>
+            <li>北京股指  3063.31-22.18 (-0.72%)</li>
+            <li>上海股指  3063.31-22.18 (-0.72%)</li>
+            <li>广州股指  3063.31-22.18 (-0.72%)</li>
+            <li>深圳股指  3063.31-22.18 (-0.72%)</li>
+            <li>北京股指  3063.31-22.18 (-0.72%)</li>
+            <li>上海股指  3063.31-22.18 (-0.72%)</li>
+            <li>广州股指  3063.31-22.18 (-0.72%)</li>
+            <li>深圳股指  3063.31-22.18 (-0.72%)</li>
+        </ul>
+
+</body>
+</html>

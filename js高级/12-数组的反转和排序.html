@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    //reverse()方法将颠倒数组中的元素位置颠倒，并且返回新的数组
+          var arr=[1,2,3];
+          var reverseArr=arr.reverse();
+          console.log(reverseArr);
+          //=:赋值运算符
+          //==：只判断内容是否相同，不判断数据类型
+          //===：不仅判断内容是否相同，还判断数据类型是否相同
+          console.log(arr===reverseArr);
+          //reverse()方法就是反转数组的第二种方法；
+          //reverse()方法的缺点：直接修改了原来的数组，再去使用原来的数组会变得不方便；
+    //sort() 方法用原地算法对数组的元素进行排序，并返回数组。排序算法现在是稳定的。默认排序顺序是根据字符串Unicode码点。
+       //sort()与冒泡排序相似，但是它比冒泡排序强大，它可以对字符串的unicode进行排序
+       //sort()功能很强大，能对数字和字符进行排列
+       var arr2=["f","e","b","t","a"];
+       console.log(arr2);
+       console.log(arr2.sort());
+      //问题：只能通过第一位排列
+      //解决问题的办法：设计的时候就是这么设计的，但是可以通过回调函数进行规则设置
+       var arr3=[13,1,15,22,67,34,27];
+       console.log(arr3);
+       console.log(arr3.sort());
+     //通过回调函数进行规则设置
+       console.log(arr3.sort(function (a, b) {
+           return a-b;
+       }))
+    alert("A".charCodeAt());
+</script>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script>
+    var stu1=creatStudent("张三");
+    console.log(stu1);
+    stu1.sayHi();
+    //创建一个函数
+    function creatStudent(name){
+        //定义一个对象
+        var student=new Object();
+        //第一个name是student对象下的属性，第二个name是函数中的局部变量
+        student.name=name;
+        //定义对象中的方法
+        student.sayHi=function() {
+            console.log(this.name + "说：大家好");
+        }
+        return student;
+    }
+
+</script>
+<body>
+
+</body>
+</html>

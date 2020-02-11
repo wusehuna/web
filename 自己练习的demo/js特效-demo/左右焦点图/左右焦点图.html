@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>左右焦点图</title>
+	<style type="text/css">
+	    body,
+	    ul,
+	    ol,
+	    li,
+	    img {
+	        margin: 0;
+	        padding: 0;
+	        list-style: none;
+	    }
+
+	    #box {
+	        width: 490px;
+	        height: 170px;
+	        padding: 5px;
+	        position: relative;
+	        border: 1px solid #ccc;
+	        margin: 100px auto 0;
+	        overflow: hidden;
+	    }
+
+	    .ad {
+	        width: 490px;
+	        height: 170px;
+	        overflow: hidden;
+	        position: relative;
+	    }
+
+	    #box img {
+	        width: 490px;
+	    }
+
+	    .ad ol {
+	        position: absolute;
+	        right: 10px;
+	        bottom: 10px;
+	    }
+
+	    .ad ol li {
+	        width: 20px;
+	        height: 20px;
+	        line-height: 20px;
+	        border: 1px solid #ccc;
+	        text-align: center;
+	        background: #fff;
+	        float: left;
+	        margin-right: 10px;
+	        cursor: pointer;
+	        _display: inline;
+	    }
+
+	    .ad ol li.current {
+	        background: yellow;
+	    }
+
+	    .ad ul li {
+	        float: left;
+	    }
+
+	    .ad ul {
+	        position: absolute;
+	        top: 0;
+	        width: 2940px;
+	    }
+
+	    .ad ul li.current {
+	        display: block;
+	    }
+
+	    #arr {
+	        display: none;
+	    }
+
+	    #arr span {
+	        width: 40px;
+	        height: 40px;
+	        position: absolute;
+	        left: 5px;
+	        top: 50%;
+	        margin-top: -20px;
+	        background: #000;
+	        cursor: pointer;
+	        line-height: 40px;
+	        text-align: center;
+	        font-weight: bold;
+	        font-family: '黑体';
+	        font-size: 30px;
+	        color: #fff;
+	        opacity: 0.3;
+	        border: 1px solid #fff;
+	    }
+
+	    #arr #right {
+	        right: 5px;
+	        left: auto;
+	    }
+	</style>
+</head>
+<body>
+   	<div id="box" class="all">
+   	    <div class="ad">
+   	        <ul>
+   	            <li><img src="images/1.jpg" /></li>
+   	            <li><img src="images/2.jpg" /></li>
+   	            <li><img src="images/3.jpg" /></li>
+   	            <li><img src="images/4.jpg" /></li>
+   	            <li><img src="images/5.jpg" /></li>
+   	        </ul>
+   	    </div>
+   	    <div id="arr">
+   	        <span id="left">
+   	            <</span> <span id="right">>
+   	        </span></div>
+   	</div>
+    <script>
+    //需求：1.当鼠标移入，向左向右的按钮显示，鼠标移出，则隐藏、
+    //获取事件源和相关元素
+	//需求：2.当点击向右的按钮时，图片的ul向左移动，否则相反
+	//获取两个按钮，点击左侧ul向右移动（每次只走一张），【计数器原理】
+    var box = document.getElementById("box");
+    var ul = box.children[0].children[0];
+    var leftRight=box.children[1];
+	var imgWidth=box.children[0].offsetWidth;
+    var btnArr=leftRight.children;
+    //鼠标移出，leftRight隐藏，
+    box.onmouseover=function(){
+        leftRight.style.display="block";
+    }
+    box.onmouseout=function(){
+      leftRight.style.display="none";
+      }
+	  var index=1;
+	btnArr[1].onclick=function(){
+		   index++;
+		   if(index>ul.children.length-1){
+			   	index = ul.children.length-1;
+			   	alert("到头了！");
+		   }
+          animate(ul,-index*imgWidth);
+	}
+	btnArr[0].onclick=function(){
+	index--;
+	 if(index<1){
+	 index = 1;
+	 alert("第一张");
+	 }
+	animate(ul,-index*imgWidth);
+	}
+	
+function animate(ele, target) {
+			clearInterval(ele.timer);
+			var speed = target > ele.offsetLeft ? 10 : -10;
+			ele.timer = setInterval(function () {
+				var val = target - ele.offsetLeft;
+				//获取元素的宽用offsetLeft,给元素的宽赋值用style.left
+				ele.style.left = ele.offsetLeft + speed + "px";
+				if (Math.abs(val) < Math.abs(speed)) {
+					ele.style.left = target + "px";
+					clearInterval(ele.timer);
+				}
+			}, 10)
+		}
+
+    </script>
+</body>
+</html>

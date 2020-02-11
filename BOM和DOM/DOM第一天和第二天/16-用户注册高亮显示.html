@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户注册高亮显示</title>
+</head>
+<style>
+.wrong{
+    border:1px solid red;
+}
+.right{
+     border:1px solid green;
+}
+</style>
+<script>
+window.onload=function(){
+    //需求：失去焦点的时候判断input按钮中的值，如果账号或密码在6-12个字符之间通过，否则报错。
+    //步骤：1.获取事件源
+    var inp=document.getElementsByTagName("input")[0];
+    //2.绑定事件
+    inp.onblur=function(){
+        if(inp.value.length<6||inp.value.length>12){
+            inp.className="wrong";
+        }else{
+            inp.className="right";
+        }
+    }
+}
+</script>
+<body>
+    账号：<input type="text">
+    密码：<input type="password">
+</body>
+</html>

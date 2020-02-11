@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+var arr=[1,2,3,4];
+//push是用来给数组末尾添加一个元素
+arr.push(9);
+    console.log(arr);
+    //arguments:只在函数中使用，实参的数组。表象是数组，但是使用instanceof打印不是数组，其实是一个伪数组
+
+
+    //例子：遍历参数求和
+    console.log(add(1,2,3,7));
+    //步骤：1.在函数中定义一个变量，使其用来接收求的和
+    function add(){
+        var sum=0;
+        //2.再定义一个值，用来接收实参传递过来的参数的长度
+//        var len=arguments.length;
+        //3.由于arguments是实参的数组，遍历arguments
+        for(var i=0;i<arguments.length;i++){
+            sum+=arguments[i];
+            //打印实参个数：
+            console.log(arguments.length);
+            //打印形参个数
+            console.log(add.length);
+            //打印整个函数，相当于打印函数名
+            console.log(arguments.callee);
+            //不能在return后写，因为return已经返回了函数执行后的返回值
+        }
+        return sum;
+
+    }
+
+
+
+//arguments.length:实参个数的长度；
+
+</script>
+<body>
+
+</body>
+</html>

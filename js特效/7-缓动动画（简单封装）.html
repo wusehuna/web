@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>缓动动画</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .box {
+            padding: 0px;
+            margin: 0px;
+            height: 100px;
+            width: 200px;
+            background-color: pink;
+            position: relative;
+            /* left: 400px; */
+        }
+        button{
+            margin:30px;
+            padding:10px 26px;
+            border:1px solid #eee;
+            background-color: #3a3cbc;
+            color: #fff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <button>点击运动到0</button>
+    <button>点击运动到200</button>
+    <button>点击运动到400</button>
+    <div class="box"></div>
+
+    <script>
+        var timer = null;
+        var btnArr = document.getElementsByTagName("button");
+        var box = document.getElementsByClassName("box")[0];
+       btnArr[0].onclick=function(){
+         animate(box,0);
+       }
+        btnArr[1].onclick=function(){
+        animate(box,200);
+        }
+         btnArr[2].onclick=function(){
+         animate(box,400);
+       }
+      
+       function animate(ele,target){
+           clearInterval(ele.timer);
+           ele.timer = setInterval(function () {
+            //由于offsetLeft四舍五入取值，所以最后10像素应该一像素一像素的走
+           var step = (target - ele.offsetLeft) / 10;
+            //对每一个step向上取整即可达到目的值
+            step = step > 0 ? Math.ceil(step) : Math.floor(step);
+             //动画原理：目标位置=当前位置+步长
+             //使用offsetLeft来获取当前位置（四舍五入取值）使用style.left来给当前位置进行赋值
+            ele.style.left = ele.offsetLeft + step + "px";
+            //用来检测缓动动画有没有停止用的
+            console.log(1);
+            //跳出定时器的条件：如果目标值减去剩下的值不足一个步长的话，清除定时器
+            if (Math.abs(target - ele.offsetLeft) < Math.abs(step)) {
+                ele.style.left=target+"px";
+                 clearInterval(ele.timer); 
+                 } 
+                 }, 30)
+
+       }
+ 
+    </script>
+</body>
+
+</html>

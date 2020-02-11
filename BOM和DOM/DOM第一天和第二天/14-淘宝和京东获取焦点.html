@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>淘宝和京东获取焦点</title>
+</head>
+<style>
+input{
+    width: 200px;
+    height: 35px;
+    margin-top: 10px;
+     padding-left: 5px;
+    color: #ccc;
+}
+label{
+    position: absolute;
+    top: 80px;
+    left: 66px;
+    font-size: 12px;
+    color:#ccc;
+}
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+</style>
+<script>
+window.onload=function(){
+    //需求：京东获取插入光标后文字消失，
+    //实际上就是当获取焦点时，将input 的value属性隐藏
+    //失去焦点时，将input的value的属性显示
+    //1.获取事件源
+    var inp1 = document.getElementById("inp1");
+    //2.绑定事件
+    // inp1.onfocus=function(){
+    //     inp1.value="";
+    // }
+    // inp1.onblur=function(){
+    //     inp1.value="我是京东";
+    // }
+    //获取焦点时
+    //如果value的值是 "我是京东"，则把value的值赋值为 ""
+    inp1.onfocus=function(){
+    if(this.value ==="我是京东"){
+        this.style.color="#000";
+        this.value = "";
+    }
+    }
+    //失去焦点时
+    //进行判断，如果value的值为 "",则把 "我是京东"赋值给它
+    inp1.onblur=function(){
+        if(this.value === ""){
+            this.style.color="#ccc";
+            this.value ="我是京东";
+        }
+    }
+    //需求：淘宝获取插入光标时，输入文字的时候，laber标签隐藏
+    //步骤：1.获取事件源
+    var inp2=document.getElementById("inp2");
+    var lab = document.getElementsByTagName("label")[0];
+    //2.绑定事件
+    //获取输入事件时，label标签隐藏
+    //判断，如果input中的值为空，label标签显示，如果input中的值不为空，label标签隐藏
+    inp2.oninput=function(){
+     if(this.value === ""){
+      lab.className="show";
+     }else{
+      lab.className="hide";
+     }
+    }
+}
+</script>
+<body>
+    京东：<input id="inp1" type="text" value="我是京东"><br>
+    淘宝：<label for="inp2">我是淘宝</label><input id="inp2" type="text" />
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    input{
+        display: block;
+    }
+</style>
+<script>
+    //需求：点击按钮设置后，文本框input绑定事件onfocus，当文本框失去焦点时,绑定事件onblur;
+    //1.获取事件源
+    window.onload=function(){
+
+        var inpArr=document.getElementsByTagName("input");
+        var but=inpArr[inpArr.length-1].nextElementSibling || inpArr[inpArr.length-1].nextSibling ;
+        //2.绑定事件
+        but.onclick=function(){
+            for(var i=0;i<inpArr.length;i++){
+                //3.书写事件驱动程序
+                inpArr[i].onfocus=function(){
+                    this.style.border="1px solid red";
+
+                }
+                inpArr[i].onblur=function(){
+                    this.style.border="";
+                    this.style.backgroundColor = "";
+                }
+
+            }
+        }
+    }
+
+</script>
+<body>
+<ul>
+    <input type="text"/>
+    <input type="text"/>
+    <input type="text"/>
+    <input type="text"/>
+    <button>设置</button>
+</ul>
+
+
+</body>
+</html>

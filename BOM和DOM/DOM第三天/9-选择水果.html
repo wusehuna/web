@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        select{
+            width: 150px;
+            height: 200px;
+            background-color: lightpink;
+        }
+    </style>
+    <script>
+        window.onload= function () {
+            //需求：点击>>>按钮，所有的水果去右边，点击<<<按钮，所由的按钮去左边
+            //思路：获取所有的子元素，直接添加到右侧
+            //步骤：1.获取事件源
+            var btnArr=document.getElementsByTagName("button");
+            var se1=document.getElementById("se1");
+            var se2=document.getElementById("se2");
+            //2.绑定事件
+            btnArr[0].onclick= function () {
+                var arr=se1.children;
+                //遍历添加到右侧
+                //往另外一个数组中添加元素原来的数组长度容易变化，会导致跳出循环，所以采用反向遍历数组
+                for(var i=arr.length-1;i>=0;i--)
+                //push是操作数组的，要往一个标签内添加元素，要使用appendChild()
+                    se2.appendChild(arr[arr.length-1-i]);
+                }
+            btnArr[1].onclick= function () {
+                var arr=se2.children;
+                //遍历添加到右侧
+                //往另外一个数组中添加元素原来的数组长度容易变化，会导致跳出循环，所以采用反向遍历数组
+                for(var i=arr.length-1;i>=0;i--)
+                        //push是操作数组的，要往一个标签内添加元素，要使用appendChild()
+                    se1.appendChild(arr[arr.length-1-i]);
+            }
+            }
+    </script>
+</head>
+<body>
+<select name="" id="se1" size="10" multiple>
+    <option value="">香蕉</option>
+    <option value="">葡萄</option>
+    <option value="">榴莲</option>
+    <option value="">芒果</option>
+    <option value="">椰子</option>
+</select>
+<button>>>></button>
+<button><<<</button>
+<button>></button>
+<button>></button>
+<select name="" id="se2" size="10" multiple>
+
+</select>
+</body>
+</html>

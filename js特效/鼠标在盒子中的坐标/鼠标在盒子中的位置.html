@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>鼠标在盒子中的位置</title>
+    <style>
+    .box{
+        width: 300px;
+        height: 200px;
+        background-color: pink;
+        font:500 18px/50px  "simsun";
+        margin:100px;
+        text-align: center;
+        cursor: pointer;
+
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+     
+    </div>
+    <script src="animate.js"></script>
+    <script>
+        //需求：鼠标进入盒子后只要移动，哪怕只有1像素，就改变盒子中的内容（显示鼠标在盒子中的坐标）
+        //技术点:新事件 onmouseover，在事件源上哪怕移动1像素也会触动这个事件
+           //一定程度上模拟了定时器
+        //步骤：1.老三步
+              //2.获取鼠标在整个页面的位置
+              //3.获取盒子在整个页面的位置
+              //4.用鼠标在整个页面的位置减去和盒子在整个页面的位置，重新赋值给盒子中的内容
+
+              //步骤：1.老三步  
+              var box=document.getElementsByTagName("div")[0];
+              box.onmousemove=function(event){
+                  event=event||window.event;
+                  //2.获取鼠标在整个页面的位置
+                  var pagex=event.pageX||scroll().left+event.clientX;
+                  var pagey=event.pageY||scroll().top+event.clientY;
+                  //3.获取盒子在整个页面的位置
+                  var boxx=box.offsetLeft;
+                  var boxy=box.offsetTop;
+                  //4.盒子中的鼠标坐标=用鼠标在整个页面的位置减去和盒子在整个页面的位置
+                  var targetx=pagex-boxx;
+                  var targety=pagey-boxy;
+                  //5.重新赋值给盒子中的内容
+                  this.innerHTML= "鼠标在盒子中的x坐标为:"+targetx+"px;<br>鼠标在盒子中的y坐标为:"+targety+"px";
+
+              }
+             
+        </script>
+</body>
+</html>

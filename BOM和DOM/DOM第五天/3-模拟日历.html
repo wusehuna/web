@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+       *{
+           padding:0;
+           margin:0;
+       }
+        .box{
+            text-align: center;
+            margin-top: 10%;
+            color: pink;
+            height: 30px;
+            font: 700 34px/30px "simsun";
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            //需求：获取实时日期事件
+            //步骤：1.创建一个Date对象
+            var  date=new Date();
+            //2.获取当前的年月日和星期
+            //获取年
+            var year=date.getFullYear();
+            //获取月
+            var month=date.getMonth();
+            //获取日
+            var day=date.getDate();
+            //获取星期
+            var week=date.getDay();
+            //3.将年月日赋值到div中
+            var div=document.getElementsByTagName("div")[0];
+            div.innerText="今天是"+year+"年"+month+"月"+day+"日 星期"+week;
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片切换</title>
+</head>
+<!-- 需求：点击a链接，切换美女图片 -->
+<style>
+    img {
+        width: 400px;
+    }
+
+    a {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<body>
+    <div class="banner">
+        <a href="https://baidu.com" onclick="fn()">切换</a>
+        <img src="../image/1.jpg" alt="第一个美女">
+    </div>
+<script>
+    // 第一中方法，行内
+    //在使用documemnt.getElementsByTagName和document.getElementsClassName时应当在后面加[0]；
+        var img = document.getElementsByTagName("img")[0];
+
+        function fn() {
+            img.src = "../image/2.jpg";
+            //使用return false的作用是为了禁止a链接自己属性的跳转
+            return false;
+
+        }
+        // 第二种方法：调用onclick事件
+          //1.获取事件源
+        // var a=document.getElementsByTagName("a")[0];
+        // var img=document.getElementsByTagName("img")[0];
+        //2.绑定事件
+        // a.onclick=function(){
+             //3.书写事件驱动程序
+        //      img.src="image/2.jpg";
+        //      return false;
+        // }
+        
+</script>
+
+</body>
+
+</html>

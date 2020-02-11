@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding:0;
+    }
+    body{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+    } 
+    .box{
+     
+        border:2px solid black;
+
+    }
+    img{
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        
+    }
+
+    </style>
+    <script>
+    window.onload=function(){
+        //需求：当鼠标经过京东狗时，京东狗换成另外一张图片
+        //步骤：1.获取事件源
+        var box=document.getElementById("box");
+        var img=box.children[0];
+        //2.绑定事件
+        img.onmouseover=function(){
+            this.src="../image/jd2.png";
+        }
+        img.onmouseout=function(){
+        this.src="../image/jd1.png";
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="box" id="box"> 
+    <img src="../image/jd1.png" alt="我是京东1">
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动画封装-demo</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    .box1{
+        height: 200px;
+        width: 1210px;
+        background-color: #ccc;
+        position: relative;
+       
+    }
+    .box2{
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+         /* margin: 10px; */
+         position: absolute;
+         left: 0;
+    }
+    button{
+        margin:10px;
+        width: 100px;
+    }
+    </style>
+    <script>
+    window.onload=function(){
+        //1.获取事件源和相关元素
+        var btn=document.getElementsByTagName("button");
+        var box2=document.getElementsByClassName("box2")[0];
+        var timer=null;
+        //2.绑定事件和书写事件驱动程序
+        btn[0].onclick=function(){
+            animate(200);
+    }
+         btn[1].onclick=function(){
+         animate(400);
+         }
+
+    function animate(ele,target) {
+        //总共有三个bug;
+        //1.当多次点击时，盒子的速度会加快，解决办法：应该在每次调用定时器时都把定时器清除一遍
+          clearInterval(ele.timer);
+         //设置一个定时器，用来让盒子匀速运动
+         ele.timer=setInterval(function(){
+              //2.盒子不能返回
+              //解决办法：应当判断当前值和目标值，如果当前值>目标值的话，盒子的步长为正值，如果当前值<目标值的话，盒子的步长为负值
+            var speed=(target>ele.offsetLeft)?10:-10;
+         ele.style.left=ele.offsetLeft+speed+"px";
+         //3.颤抖问题
+         //解决办法：如果目标值小于等于当前值，那么先判断之间的距离还有多少，如果小于步长，那么就不走了
+         var val=target-ele.offsetLeft;
+         if(Math.abs(val) <= Math.abs(speed)){
+         ele.style.left=target+"px";
+         clearInterval(timer);
+         }
+         },30)
+         }
+        
+    }
+    </script>
+</head>
+<body>
+<div class="box1">
+   <button>移动200</button>
+   <button>移动400</button>
+   <div class="box2"></div>
+</div>
+    
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    //使用for循环遍历json对象
+    //先创建一个json对象,json对象的键值对中的Key必须带双引号
+    var aaa={"name":"张三","age":18,"arr":[1,2,3]}
+//    使用for...in循环json对象
+    for(var k in aaa){
+        console.log(aaa[k]);
+    }
+    //小案例：制作一个json对象，然后遍历
+    //先创建一个json对象
+    var bbb={};
+    //将bbb这个json对象用循环赋值
+    for(var i=1;i<=10;i++){
+        bbb[i]=i*10;
+    }
+    //使用for循环将bbb这个Json中的各个索引值下面的值打印出来
+    for(var k in bbb){
+        console.log(bbb[k]);
+    }
+</script>
+<body>
+
+</body>
+</html>

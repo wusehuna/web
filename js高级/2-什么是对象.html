@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+//生活中的对象：一个车，一个手机   一类事物和对象的区别：有特指的唯一性指的是对象；不具有唯一性指的是一类事物
+//游戏中： 有特指的事物是对象（自己使用的游戏道具等）
+//程序中：
+// hero就是对象 Object是一类事物
+var hero =new Object();
+
+//自定义属性  --状态
+hero.money=10000;
+hero.level=6;
+//      --行为
+hero.attack =function(){
+    console.log("攻击了小怪物");
+}
+console.log(hero);
+
+//属性的绑定和方法的绑定
+console.log(hero.money);
+console.log(hero.level);
+hero.attack();
+
+
+
+//属性和方法（状态【名词】和行为【动词】）：对象中的变量叫做属性，对象中的函数叫做方法
+//对象具有特征和行为
+
+</script>
+</body>
+</html>

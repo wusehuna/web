@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>楼层跳跃</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+
+        }
+
+        body,
+        html {
+            height: 100%;
+        }
+
+        ul,
+        li {
+            height: 100%;
+
+        }
+
+        ul li {
+            font: 700 38px/40px "Microsoft YaHei";
+            color: #fff;
+            text-align: center;
+        }
+
+        ol {
+            list-style: none;
+            position: fixed;
+            top: 80px;
+            left: 80px;
+            cursor: pointer;
+        }
+
+        ol li {
+            width: 60px;
+            height: 70px;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 50px;
+
+        }
+    </style>
+    <script src="animate.js"></script>
+    <script>
+        window.onload = function () {
+            //0.获取元素和相关元素
+            var ol = document.getElementsByTagName("ol")[0];
+            var ul = document.getElementsByTagName("ul")[0];
+            var olLiArr = ol.children;
+            var ulLiArr = ul.children;
+            var leader = 0;
+            var target = 0;
+            var timer = null;
+            //1.制定ul和ol的li的背景色，对应的li的背景色相同
+            //1.1 设置一个数组，里面放置颜色，给制定的数组附上相应的颜色
+            var colorArr = ["pink", "blue", "skyblue", "orange", "yellow"];
+            //1.2利用for循环给olLi和ulLi上色
+            for (var i = 0; i < colorArr.length; i++) {
+                olLiArr[i].style.backgroundColor = colorArr[i];
+                ulLiArr[i].style.backgroundColor = colorArr[i];
+            
+            //2.循环绑定事件，为每一个li绑定事件
+           //属性绑定索引值
+            olLiArr[i].index = i;
+            olLiArr[i].onclick = function () {
+                
+                    target = ulLiArr[this.index].offsetTop;
+                    //3.利用缓动动画原理实现屏幕滚动
+                    //3.1获取步长
+                    //要用定时器先清除定时器
+                    timer = setInterval(function () {
+                    var step = (target - leader) / 10;
+                    //3.2二次处理步长
+                    step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                    //3.3利用缓动原理使得屏幕滑动
+                    leader = leader + step;
+                    window.scrollTo(0, leader);
+                    //3.4清除定时器
+                    if (target === leader) {
+                        clearInterval(timer);
+                    }
+                }, 30)
+            }
+            }
+            //4.用scroll事件模拟盒子距离最顶端的距离
+            window.onscroll = function () {
+                leader = scroll().top;
+
+            }
+
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>鞋子区域</li>
+        <li>袜子区域</li>
+        <li>裙子区域</li>
+        <li>裤子区域</li>
+        <li>衣服区域</li>
+    </ul>
+    <ol>
+        <li>鞋子</li>
+        <li>袜子</li>
+        <li>裙子</li>
+        <li>裤子</li>
+        <li>衣服</li>
+    </ol>
+</body>
+
+</html>

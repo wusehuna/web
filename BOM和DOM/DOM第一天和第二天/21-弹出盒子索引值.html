@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弹出盒子索引值</title>
+    <style>
+        button {
+            width: 150px;
+            height: 40px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .current {
+            background-color: pink;
+        }
+    </style>
+    <script>
+        //需求 :鼠标放到哪个按钮上，弹出按钮的索引值
+        window.onload = function () {
+            //1.获取事件源
+            var btnArr=document.getElementsByTagName("button");
+            //2.绑定事件
+            for(var i=0;i<btnArr.length;i++){
+                 // //每次循环绑定一个属性，属性值为该盒子的索引值
+                 // btnArr[i].setAttribute("index",i);
+                 btnArr[i].index = i;
+                btnArr[i].onmouseover=function(){
+                      for(var j=0;j<btnArr.length;j++){
+                           btnArr[j].className="" ; 
+                           }
+                    this.className="current";
+                    alert(this.index);
+                }
+                
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+    <button>4</button>
+    <button>5</button>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>体验事件</title>
+    <!-- 需求：点击盒子，弹出对话框 alert(1) -->
+    <!-- 步骤：1.获取事件源 doucument.getElementById("box")-->
+    <!-- 2.绑定事件(事件源.事件=function(){事件驱动程序}) -->
+    <!-- 3.书写事件驱动程序 -->
+    <style>
+    #box{
+        width: 100px;
+        height: 100px;
+        background-color: wheat;
+        cursor: pointer;
+    }
+    body{
+        margin:0px;
+        padding: 0px;
+    }
+    .aaa 
+    </style>
+  
+</head>
+<body>
+    <div id="box"></div>
+</body>
+  <script>
+      // 1.获取事件源
+      var div = document.getElementById("box");
+      // 2.绑定事件
+      div.onclick = function () {
+          // alert(1);
+          div.style.width = "200px";
+          //在js中不允许出现-，因为它是驼峰命名法（例如：background-color必须变成backgroundColor）
+          div.style.backgroundColor = "pink";
+      }
+  </script>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动画封装</title>
+    <style>
+        .box1 {
+            height: 200px;
+            background-color: #ccc;
+            position: relative;
+            /* left: 0; */
+        }
+
+        .box2 {
+            height: 100px;
+            width: 100px;
+            background-color: pink;
+            position: absolute;
+            left: 0 ;
+        }
+
+        button {
+            margin: 10px;
+        }
+    </style>
+   <script>
+   window.onload=function(){
+       var btnArr=document.getElementsByTagName("button");
+       var box2=document.getElementsByClassName("box2")[0];
+       var timer=null;
+       btnArr[0].onclick=function(){
+          animate(200);
+       }
+          btnArr[1].onclick=function(){
+     animate(400);
+          }
+          function animate(target) {
+              //bug1:每次点击按钮时，都会打开一个定时器，会导致盒子的运动越来越快
+              //解决办法：每次使用定时器时，清楚定时器
+              clearInterval(timer);
+              //bug2:盒子不能返回
+              //解决办法：判断目标值和当前值哪个大，如果当前值>目标值，那么步长为正;如果当前值<目标值，那么步长为负
+              var speed=target>box2.offsetLeft?10:-10;
+                //    设置定时器
+                //bug3:当盒子回到200时，再次点击200,盒子会认为步长是负的，继续往回走，
+              //解决办法：定义一个val，val是目标值减去当前值，如果它小于等于一个步长，则不能往回走
+                   timer=setInterval(function(){
+                       //bug3:当盒子回到200时，再次点击200,盒子会认为步长是负的，继续往回走，
+                       //解决办法：定义一个val，val是目标值减去当前值，如果它小于等于一个步长，则不能往回走
+                       var val=target-box2.offsetLeft;
+                   //盒子自身的left+步长
+                   box2.style.left=box2.offsetLeft+speed+"px";
+                   if(Math.abs(val)<=Math.abs(speed)){
+                     //解决颤抖的问题
+                     //如果当前值===目标值，那么先判断之间的距离还有多少，如果小于步长，那么就不走了
+                     box2.style.left=target+"px";
+                     clearInterval(timer);
+                   }
+                  
+                   },40);
+          }
+
+   }
+   </script>
+
+</head>
+
+<body>
+
+    <div class="box1">
+        <button>运动到200</button>
+        <button>运动到400</button>
+        <div class="box2"></div>
+
+
+    </div>
+   
+</body>
+
+</html>

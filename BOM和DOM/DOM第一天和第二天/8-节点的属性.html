@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    window.onload=function(){
+        //使用doucument.getElementsByTagName("img")和
+        //doucument.getElementsByClassName("box")的时候必须要在后面加上[0],
+        //否则会出现undefined;
+       var elm=document.getElementsByTagName("img")[0];
+       //第一种方法 ：
+       console.log(elm.src);
+       //第二种方法：
+       console.log(elm.getAttribute("src"));
+       elm.setAttribute("id","nihao");
+       elm.removeAttribute("id");
+
+    }
+    </script>
+</head>
+
+<body>
+<img src="../image/jd1.png" alt="图片"class="box" id="aaa" title="tupian">
+</body>
+
+</html>

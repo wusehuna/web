@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>缓动动画</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .box {
+            padding: 0px;
+            margin: 0px;
+            height: 100px;
+            width: 200px;
+            background-color: pink;
+            position: relative;
+            /* left: 400px; */
+        }
+    </style>
+</head>
+
+<body>
+    <button>点击运动到0</button>
+    <button>点击运动到200</button>
+    <button>点击运动到400</button>
+    <div class="box"></div>
+    <script>
+        var timer = null;
+        var btn = document.getElementsByTagName("button")[0];
+        var box = document.getElementsByClassName("box")[0];
+        var target=400;
+        btn.onclick = function () {
+            //需求2：向左运动到0:遇到的问题：盒子运动到left:9px的位置就不再运动了
+            //解决办法：如果插值小于0的时候，向下取整
+            //要用定时器先清除定时器
+              clearInterval(timer);
+             timer = setInterval(function () {
+                
+                //由于offsetLeft四舍五入取值，所以最后10像素应该一像素一像素的走
+                var step = (target - box.offsetLeft) / 10;
+                //对每一个step向上取整即可达到目的值
+                step=step>0?Math.ceil(step):Math.floor(step);
+                box.style.left = box.offsetLeft + step + "px";
+                //跳出定时器的条件：如果目标值减去剩下的值不足一个步长的话，清除定时器
+                if(Math.abs(target-box.offsetLeft)<Math.abs(step)){
+                    clearInterval(timer);
+                }
+            }, 30)
+          
+        }
+    </script>
+</body>
+
+</html>

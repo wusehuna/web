@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>京东狗</title>
+    <style>
+        img{
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
+            border: 1px solid;
+        }
+    </style>
+    <script>
+        //把script写在上面时，应该加window.onload
+    window.onload=function(){
+         //需求：鼠标经过时，将京东狗的图片换一个路径
+         //步骤：1.获取事件源
+         var img = document.getElementById("box");  
+         //2.事件绑定
+         img.onmouseover=function(){
+        //  img.src="image/jd2.png";
+         this.src="image/jd2.png";
+         }
+         var img =document.getElementById("box");
+         img.onmouseout=function(){
+        //  img.src="image/jd1.png";
+         this.src="image/jd1.png";
+         }
+        // box.onmouseover=fn1;
+        // box.onmouseout=fn2;
+        // function fn1(){
+        //     box.src="image/jd2.png";
+        // }
+        //   function fn2(){
+        //   box.src="image/jd1.png";
+        //   }
+    }
+   
+    </script>
+</head>
+<body>
+    <img id="box" src="../image/jd1.png" alt="我是京东狗">
+</body>
+</html>

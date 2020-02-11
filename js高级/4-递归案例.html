@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script>
+    alert(getSum(100));
+    //需求：使用递归求1-100的和
+    //递归：就是函数自己调用自己
+    function getSum(n){
+     if(n<1){
+          return 0;
+     }
+      //累加
+        return n+getSum(n-1);
+    }
+</script>
+<body>
+
+</body>
+</html>

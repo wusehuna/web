@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>缓动动画</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+        }
+    .box{
+        padding:0px;
+        margin:0px;
+        height: 100px;
+        width: 200px;
+        background-color: pink;
+        position: relative;
+    }
+    </style>
+</head>
+<body>
+    <button>点击运动</button>
+    <div class="box"></div>
+    <script>
+        var timer=null;
+    var btn=document.getElementsByTagName("button")[0];
+    var box=document.getElementsByClassName("box")[0];
+    clearInterval(timer);
+    btn.onclick=function(){
+        timer=setInterval(function(){
+         var step=(400-box.offsetLeft)/10;
+         box.style.left=box.offsetLeft+step+"px";
+        },300)
+    }
+ 
+    </script>
+</body>
+</html>

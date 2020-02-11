@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+     //创建数组的两种方法
+    //第一种方法：
+    var arr1=[1,2,3];
+    //第二种方法：一个参数代表长度，两个参数代表值
+    var arr2=new Array(5);
+     //第三种方法：创建一个数组并赋值
+     var arr3=new Array([1,[2,[3,[7]]]]);
+     console.log(arr3);
+     console.log(arr2);
+    //检测是否是数组的常用方法
+     //方法1：
+    console.log(arr1 instanceof Array);
+    //方法2：
+    console.log(Array.isArray(arr2));
+    //常用数组的API
+    //1.join:把数组元素用特殊方式连接成字符串；参数决定用什么来连接，无参默认用逗号来连接
+    var arr=["刘备","关羽","张飞"];
+//    var  str=arr.join("&");
+    console.log(arr.join("$"));
+    //2.转换数组：每个对象都有一个toString方法，不能传入参数
+    var arr=[1,2,3];
+    console.log(arr.toString());
+
+
+</script>
+<body>
+
+</body>
+</html>

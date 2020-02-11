@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .topBanner{
+        background-color: pink;
+    }
+    .w{
+      width: 1210px;
+      background-color: skyblue;
+      margin:0 auto;
+      position: relative;
+    }
+    .img{
+        width: 1210px;
+        height: 90px;
+        
+    }
+a{  text-decoration: none;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+.hide{
+    display: none;
+}
+    </style>
+    <script>
+    window.onload=function(){
+        var topBanner=document.getElementById("topBanner");
+        var closeBanner=document.getElementById("closeBanner");
+        closeBanner.onclick=function(){
+            topBanner.className="hide";
+        }
+    }
+    </script>
+</head>
+<body>
+     <div class="topBanner" id="topBanner">
+         <div class="w">
+             <div class="img"></div>
+             <a href="#" id="closeBanner">X</a>
+         </div>
+     </div>
+</body>
+</html>

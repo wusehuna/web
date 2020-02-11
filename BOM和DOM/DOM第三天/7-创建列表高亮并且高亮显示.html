@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        button{
+            width: 150px;
+            height: 40px;
+            border-radius: 5px;
+            border:1px solid lightpink;
+            background-color: hotpink;
+            margin: 20px;
+            font:700 16px/40px "simsun";
+        }
+        ul,li{
+            height: 40px;
+            line-height: 40px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            //需求1.：点击创建列表按钮，给ul中创建li
+            //步骤：1.获取事件源
+            var arr=["张劲涛是猪","张劲涛是猪","张劲涛是猪","张劲涛是猪"];
+            var btn=document.getElementsByTagName("button")[0];
+            var ul=document.getElementsByTagName("ul")[0];
+            //绑定事件
+            btn.onclick=function(){
+                for(var i=0;i<arr.length;i++){
+                    //给ul中创建li标签
+                    var newLi= document.createElement("li");
+                    newLi.innerHTML=arr[i];
+                    ul.appendChild(newLi);
+                }
+                //需求2：当鼠标经过列表中的具体项时，使那一列高亮显示；
+                //步骤：1.获取事件源
+                 var liArr=ul.children;
+                //2.绑定事件
+                for(var j=0;j<liArr.length;j++){
+                    liArr[j].onmouseover=function(){
+                        //高亮显示（排他思想）
+                        for(var j=0;j<liArr.length;j++){
+                            liArr[j].style.backgroundColor="";
+                        }
+                        //这里应该用this，而不是liArr[j]
+                        //因为j的值已经变了
+                        this.style.backgroundColor="pink";
+                    }
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+<button>创建张劲涛是猪</button>
+<ul></ul>
+
+</body>
+</html>

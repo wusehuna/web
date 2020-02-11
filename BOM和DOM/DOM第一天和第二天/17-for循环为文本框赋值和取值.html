@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用for循环为文本框赋值和取值</title>
+</head>
+<script>
+window.onload=function(){
+    //需求：利用for循环为文本框赋值
+    //步骤：1.获取事件源
+    var inpArr=document.getElementsByTagName("input");
+    var btnArr=document.getElementsByTagName("button");
+    //2.绑定事件
+    //赋值
+    btnArr[0].onclick=function(){
+        //点击按钮，使得每一项文本框都被赋值
+        for(var i=0;i<inpArr.length;i++){
+            //每一个文本框的值为i
+             inpArr[i].value=i;
+        }
+    }
+    //取值,
+     btnArr[1].onclick=function(){
+     //点击按钮，使得每一项文本框都被赋值
+     for(var i=0;i<inpArr.length;i++){
+          //每一个文本框的值为i
+           inpArr[i].value=""; } }
+}
+</script>
+<body>
+    <button>赋值</button>
+    <button>取值</button><br><br>
+    <input type="text"><br><br>
+    <input type="text"><br><br>
+    <input type="text"><br><br>
+    <input type="text"><br><br>
+    <input type="text"><br><br>
+    <input type="text"><br><br>
+    <input type="text"><br><br>
+</body>
+</html>

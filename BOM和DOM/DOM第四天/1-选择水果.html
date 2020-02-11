@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        select{
+            width: 150px;
+            height: 200px;
+            background-color: lightpink;
+        }
+    </style>
+    <script>
+        window.onload= function () {
+            //需求1：点击>>>按钮，所有的水果去右边，点击<<<按钮，所由的按钮去左边
+            //思路：获取所有的子元素，直接添加到右侧
+            //步骤：1.获取事件源
+            var btnArr=document.getElementsByTagName("button");
+            var se1=document.getElementById("se1");
+            var se2=document.getElementById("se2");
+
+            //2.绑定事件
+            btnArr[0].onclick= function () {
+                var arr=se1.children;
+                //遍历添加到右侧
+                //往另外一个数组中添加元素原来的数组长度容易变化，会导致跳出循环，所以采用反向遍历数组
+                for(var i=arr.length-1;i>=0;i--)
+                        //push是操作数组的，要往一个标签内添加元素，要使用appendChild()
+                    se2.appendChild(arr[arr.length-1-i]);
+            }
+            btnArr[1].onclick= function () {
+                var arr=se2.children;
+                //遍历添加到右侧
+                //往另外一个数组中添加元素原来的数组长度容易变化，会导致跳出循环，所以采用反向遍历数组
+                for(var i=arr.length-1;i>=0;i--)
+                        //push是操作数组的，要往一个标签内添加元素，要使用appendChild()
+                    se1.appendChild(arr[arr.length-1-i]);
+            }
+            //需求2：点击>和<按钮，所有被选择的子元素进入对方的标签中。
+            //步骤：1.获取所有子元素，然后循环判断，只有selected为true的才能到对方的标签中
+            btnArr[2].onclick= function () {
+                //将获取到的所有子元素放入一个数组中。
+                var arr=se1.children;
+                //循环判断存有子元素的数组，当只有子元素的selectde属性为true的才能到对方的标签中去
+                for(var i=arr.length-1;i>=0;i--)
+                    if(arr[i].selected===true){
+                        //当到对方的标签中其不被选中
+                        arr[i].selected=false;
+                        se2.appendChild(arr[i]);
+                    }
+                }
+
+            btnArr[3].onclick= function () {
+                //获取所有子元素
+                var arr=se2.children;
+                //循环判断，只有selectde属性为true的才能到对方的标签中去
+                for(var i=arr.length-1;i>=0;i--)
+                //如果该数组的selected的属性是true时，则把它放入se1中
+                    if(arr[i].selected===true){
+                        se1.appendChild(arr[i]);
+                    }
+            }
+        }
+    </script>
+</head>
+<body>
+<select name="" id="se1" size="10" multiple>
+    <option value="">香蕉</option>
+    <option value="">葡萄</option>
+    <option value="">榴莲</option>
+    <option value="">芒果</option>
+    <option value="">椰子</option>
+</select>
+<button>>>></button>
+<button><<<</button>
+<button>></button>
+<button><</button>
+<select name="" id="se2" size="10" multiple>
+
+</select>
+</body>
+</html>

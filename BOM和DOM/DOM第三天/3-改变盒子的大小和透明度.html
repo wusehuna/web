@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    //需求:鼠标经过改变盒子的大小和透明度
+    //1.获取事件源
+    window.onload=function(){
+        var box=document.getElementById("box");
+        //2.绑定事件
+        box.onmouseover=function(){
+            //3.书写事件驱动程序
+            box.style.width="200px";
+            box.style.height="200px";
+            box.style.opacity="0.2";
+        }
+
+    }
+</script>
+<body>
+<div id="box" style="width:100px;height: 100px;background-color: hotpink"></div>
+</body>
+</html>

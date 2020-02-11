@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件的拓展</title>
+</head>
+<body>
+    
+</body>
+<script>
+//获取事件源的方式一共有五种：
+//获取事件源第一种方法：
+var div=document.getElementById("div");
+//获取事件源第二种方法：这种方法获取的是一个数组
+var arr=document.getElementsByTagName("div");
+//获取事件源第三种方法：这种方法获取的是一个数组(不太好，h5新增的，ie浏览器不支持)
+var arr2=document.getElementsByClassName("leiming");
+//获取事件源第四种方法：这种方法获取的是div中的name属性
+var arr3=document.getElementsByName("aaa");
+//绑定事件的方式：
+//第一种：匿名绑定
+// 事件源.事件=function(){
+//     事件驱动程序
+// }
+// 第二种：函数绑定；不能写括号（用函数名绑定）
+// div.onclick=fn;
+// function fn(){
+//     alert(1);
+// }
+//第三种：行内绑定
+// <div id="box" onclick="fn()"></div>
+// function fn(){
+//     alert(1);
+// }
+//事件驱动程序：可以操作标签的属性和样式
+// div.style.width="200px";
+// div.style.height="200px";
+</script>
+</html>

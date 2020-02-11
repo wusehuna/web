@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>event事件</title>
+</head>
+<body>
+    <script>
+    document.onclick=function(event){
+        event=event||window.event;
+         console.log(event.pageY);
+         console.log(event.clientY);
+         console.log(event.screenY);
+         //pageY和clientY的值是一样的，screenY的值是基于屏幕的高度，pageY的值是基于body的高度
+         
+    }
+   
+    </script>
+</body>
+</html>

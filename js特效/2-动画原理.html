@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动画原理</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+     div {
+     width: 100px;
+     height: 100px;
+     position: relative;
+     background-color: pink;
+     }
+    </style>
+    <script>
+    window.onload=function(){
+         var btn=document.getElementsByTagName("button")[0];
+         var box=document.getElementsByClassName("box")[0];
+         btn.onclick=function(){
+             console.log(box.offsetLeft)
+            //定义一个定时器，使得盒子匀速运动
+            timer= setInterval(function(){
+              box.style.left=box.offsetLeft+10+"px";
+              if(box.offsetLeft>=200)
+              clearInterval(timer);
+            },300);
+            // box.style.left="500px";
+
+
+         }
+
+    }
+    </script>
+
+</head>
+<body>
+    <button>动画</button>
+    <div class="box">
+
+
+    </div>
+</body>
+</html>

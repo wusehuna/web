@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .box {
+            height: 42px;
+            width: 800px;
+            border-radius: 5px;
+            margin: 200px auto;
+            background: #fff url("images/wifi.png") right no-repeat;
+            position: relative;
+        }
+
+        ul,
+        li {
+            list-style: none;
+            position: relative;
+
+        }
+
+        li {
+            float: left;
+            width: 83px;
+            height: 42px;
+            text-align: center;
+            font: 500 16px/42px "simsun";
+            cursor: pointer;
+        }
+
+        span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 83px;
+            height: 42px;
+            background: url("images/cloud.gif") no-repeat;
+        }
+    </style>
+    <script>
+     window.onload=function(){
+         //需求：1.鼠标放到哪个li上面，span对应移动到哪个li上，移开后，回到原位置
+         //需求：2.鼠标点击哪个li，记录该li标签，移开的时候span回到该记录的Li标签上
+         //步骤：1.老三步
+            //2.计数器
+            //1.
+            var liArr=document.getElementsByTagName("li");
+            var liWidth=liArr[0].offsetWidth;
+            var span=document.getElementsByTagName("span")[0];
+            var count=0;
+            for(var i=0;i<liArr.length;i++){
+                liArr[i].index=i;
+                liArr[i].onmouseover=function(){
+                    //当鼠标移动到目标位置时，让span移动到li的索引值上
+                     animate(span,this.index*liWidth);
+                }
+                liArr[i].onmouseout=function(){
+                    //当鼠标移出时，让span移动到原来首页的位置
+                     animate(span,count*liWidth);
+                }
+                //需求：2.鼠标点击哪个li，记录该li标签，移开的时候span回到该记录的Li标签上
+                //点击事件，记录功能
+                //只要点击，就记录，设置一个全局变量count
+                liArr[i].onclick=function(){
+                count=this.index;
+                animate(span,count*liWidth);
+                }
+            }
+            
+
+             function animate(ele,target){
+             clearInterval(ele.timer);
+             ele.timer = setInterval(function () {
+             //由于offsetLeft四舍五入取值，所以最后10像素应该一像素一像素的走
+             var step = (target - ele.offsetLeft) / 10;
+             //对每一个step向上取整即可达到目的值
+             step = step > 0 ? Math.ceil(step) : Math.floor(step);
+             //动画原理：目标位置=当前位置+步长
+             //使用offsetLeft来获取当前位置（四舍五入取值）使用style.left来给当前位置进行赋值
+             ele.style.left = ele.offsetLeft + step + "px";
+             //用来检测缓动动画有没有停止用的
+             console.log(1);
+             //跳出定时器的条件：如果目标值减去剩下的值不足一个步长的话，清除定时器
+             if (Math.abs(target - ele.offsetLeft) < Math.abs(step)) { ele.style.left=target+"px";
+                 clearInterval(ele.timer); } }, 30)
+     } 
+     }
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <span></span>
+        <ul>
+            <li>首页新闻</li>
+            <li>师资力量</li>
+            <li>活动策划</li>
+            <li>企业文化</li>
+            <li>招聘信息</li>
+            <li>公司简介</li>
+            <li>上海校区</li>
+            <li>广州校区</li>
+        </ul>
+
+    </div>
+
+</body>
+
+</html>

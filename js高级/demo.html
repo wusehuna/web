@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    //使用回调函数和sort解决排序只识别第一个字符的unicode问题
+    var arr2=[7,6,14,13,2,1];
+    var aaa=sort(arr2,function(a,b){
+        return b-a;
+    });
+    console.log(aaa);
+    function sort(arr,fn){
+        //冒泡排序，双重for循环，外部循环控制轮数
+        for(var i=0;i<arr.length;i++){
+            //内循环控制次数
+            for(var j=0;j<arr.length-1;j++){
+                if(fn(arr[j],arr[j+1])>0){
+                    var temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                }
+            }
+        }
+        return arr;
+    }
+
+</script>
+<body>
+
+</body>
+</html>

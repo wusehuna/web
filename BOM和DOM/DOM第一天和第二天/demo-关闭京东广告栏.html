@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+         *{
+            margin:0;
+            padding:0;
+
+        }
+   .topbanner{
+    background-color: skyblue;
+   }
+   .w{
+       width: 1210px;
+       margin: 0px auto;
+       position: relative;
+   }
+   .img{
+       width: 1210px;
+       height: 80px;
+       background-color:slategrey;
+   }
+   a{
+       position: absolute;
+       top:0px;
+       right: 5px;
+       text-decoration: none;
+       color:red;
+       height: 20px;
+       width: 20px;
+       background-color:wheat;
+       border-radius: 5px;
+       padding-left: 10px;
+   }
+   a:hover{
+       background-color: aquamarine;
+   }
+   .hide{
+       display: none !important;
+   }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbanner" id="topbanner">
+        <div class="w">
+            <div class="img"></div>
+            <a href="#" id="closeBanner">X</a>
+
+        </div>
+
+        <script>
+            //需求：关闭京东广告栏，点击a标签（X），使得盒子隐藏
+            //步骤：1.获取事件源
+            //document.getElementById()方法获取的是标签的id选择器
+            var topbanner=document.getElementById("topbanner");
+            var closeBanner = document.getElementById("closeBanner");
+
+
+            //绑定事件
+             closeBanner.onclick=function(){
+                topbanner.className="hide";
+                         }
+        </script>
+</body>
+
+</html>

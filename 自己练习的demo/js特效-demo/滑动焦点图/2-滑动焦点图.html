@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>滑动焦点图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 490px;
+            height: 170px;
+            margin: 100px auto;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .inner {
+            width: 490px;
+            height: 170px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        ul {
+            list-style: none;
+            width: 500%;
+            /* 如果ul不加绝对定位的话，当鼠标经过的时候盒子不切换 */
+             position: absolute;
+        }
+
+        li {
+            float: left;
+        }
+
+        .square {
+            position: absolute;
+            bottom: 5px;
+            right: 20px;
+        }   
+
+        span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: 10px;
+            background-color: cornsilk;
+            color: #000;
+            text-align: center;
+
+        }
+
+        .curret {
+            background-color: coral;
+            color: #fff;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+                //1.获取事件源和相关元素
+                var inner = document.getElementsByClassName("inner")[0];
+                var ulArr = inner.children[0];
+                var spaArr = inner.children[1].children;
+                //2.绑定事件和书写事件驱动程序
+                for (var i = 0; i < spaArr.length; i++) {
+                    spaArr[i].index = i;
+                    spaArr[i].onmouseover = function () {
+                        //点亮span标签，使用排他思想
+                        for (var j = 0; j < spaArr.length; j++) {
+                            spaArr[j].className = "";
+                        }
+                        this.className = "curret";
+                        //当鼠标经过每一个span时，同时使得ul中的img进行移动
+                        //调用动画封装的方法
+                        animate(ulArr,  -this.index * 490);
+                    }
+                }
+ function animate(ele,target) {
+ //bug1:每次点击按钮时，都会打开一个定时器，会导致盒子的运动越来越快
+ //解决办法：每次使用定时器时，清除定时器
+ //一个盒子智能有一个定时器，这样的话，不会出现其他盒子定时器冲突
+ clearInterval(ele.timer);
+ //bug2:盒子不能返回
+ //解决办法：判断目标值和当前值哪个大，如果当前值>目标值，那么步长为正;如果当前值<目标值，那么步长为负 
+ var speed=target> ele.offsetLeft ? 10 : -10;
+     // 设置定时器
+     //bug3:当盒子回到200时，再次点击200,盒子会认为步长是负的，继续往回走，
+     //解决办法：定义一个val，val是目标值减去当前值，如果它小于等于一个步长，则不能往回走
+     ele.timer = setInterval(function () {
+     //bug3:当盒子回到200时，再次点击200,盒子会认为步长是负的，继续往回走，
+     //解决办法：定义一个val，val是目标值减去当前值，如果它小于等于一个步长，则不能往回走
+     var val = target - ele.offsetLeft;
+     //盒子自身的left+步长
+     ele.style.left = ele.offsetLeft + speed + "px";
+     if (Math.abs(val) <= Math.abs(speed)) { //解决颤抖的问题 //如果当前值===目标值，那么先判断之间的距离还有多少，如果小于步长，那么就不走了 ele.style.left=target
+         + "px" ; clearInterval(ele.timer); } }, 40); }
+
+        }
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <div class="inner">
+            <ul>
+                <li><img src="images/01.jpg" alt=""></li>
+                <li><img src="images/02.jpg" alt=""></li>
+                <li><img src="images/03.jpg" alt=""></li>
+                <li><img src="images/04.jpg" alt=""></li>
+                <li><img src="images/05.jpg" alt=""></li>
+            </ul>
+            <div class="square">
+                <span class="curret">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

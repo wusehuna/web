@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>鼠标经过按钮使得按钮变色</title>
+</head>
+<style>
+button{
+    width: 150px;
+    height: 40px;
+    margin: 10px;
+    cursor: pointer;
+}
+ .current {
+ background-color: pink;
+ }
+</style>
+
+<body>
+    <button title="1">1</button>
+    <button title="2">2</button>
+    <button title="3">3</button>
+    <button title="4">4</button>
+    <button title="5">5</button>
+</body>
+<script>
+    //需求 :鼠标放到哪个按钮上，哪个按钮就会高亮显示
+   
+        //1.获取事件源
+        var btnArr = document.getElementsByTagName("button");
+        //2.绑定事件
+        //排他思想 (干掉所有人，只剩我一个)
+        //排他思想一般和for循环连用
+        for (var i = 0; i < btnArr.length; i++) {
+            btnArr[i].onmouseover = function () {
+                for (var j = 0; j < btnArr.length; j++) {
+                    btnArr[j].className = "";
+                }
+                this.className = "current";
+                alert(this.title);
+            }
+
+        }
+
+</script>
+</html>

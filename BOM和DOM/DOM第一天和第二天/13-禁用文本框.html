@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>禁用文本框</title>
+    <script>
+    window.onload=function(){
+        //需求：点击禁用按钮，文本框变成灰色的不能改动的
+        //步骤：1.获取事件源
+        var a=document.getElementsByTagName("button")[0];
+        var b=document.getElementsByTagName("input")[0];
+        var c=document.getElementsByTagName("button")[1];
+        //2.绑定事件
+         a.onclick=function(){
+             //3.书写事件驱动程序
+             //使得文本框的disabled属性显示出来，可以赋true的值
+             b.disabled=true;
+         }
+         c.onclick=function(){
+             b.removeAttribute("disabled");
+            //  b.disabled=false;
+         }
+    }
+    </script>
+</head>
+<body>
+    账号：<input type="text" value="allei" >
+    <button>禁用</button>
+    <button>解禁</button>
+    <br>
+    密码：<input type="text" value=".......">
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .box{
+        width: 300px;
+        height: 300px;
+        border: 1px solid skyblue;
+       
+    }
+    img{
+        width: 200px;
+        height: 200px;
+        /* margin:0 auto; */
+    }
+    </style>
+    <script>
+    //实现鼠标移动到图片里面，图片变换，移出图片，图片变回原来的图片
+   window.onload=function(){
+   //需求：当鼠标经过京东狗时，京东狗换成另外一张图片
+   //步骤：1.获取事件源
+   var box=document.getElementById("box");
+   var img=document.getElementsByTagName("img")[0];
+   //2.绑定事件
+   img.onmouseover=function(){
+   this.src="../../BOM和DOM/image/jd2.png";
+   }
+   img.onmouseout=function(){
+   this.src="../../BOM和DOM/image/jd1.png";
+   }
+   }
+    </script>
+</head>
+<body>
+    <div class="box" id="box">
+        <img  src="../../BOM和DOM/image/jd1.png" alt="">
+    </div>
+</body>
+</html>

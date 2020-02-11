@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组的API方法遍历</title>
+</head>
+<script>
+//every,它的返回值是一个boolean类型
+    var arr = ["刘备", "关羽", "张飞", "马超", "黄州"];
+    arr.every(function (element, index, array) {
+        element = "aaa"; //将每次打印的当前值改为 "aaa"
+        array[index] = "aaa"; //修改数组中的元素为 "aaa"
+        console.log(element); //用于测试的当前值
+        console.log(index); //用于测试的当前值的索引
+        console.log(array); //调用every的当前数组
+        return true; //如果想要都打印出来，则要返回true
+    })
+    //如果元素的长度大于2，则返回false
+    var arr2 = ["刘玄德", "关云长", "赵子龙", "马超", "黄忠"];
+    var bool = arr.every(function (element, index, array) {
+        if (element.length > 2) {
+            return false
+        }
+        return true;
+    })
+   console.log(arr2);
+
+//filter()返回值是一个新的数组，return为true的数组
+ var arr3=arr2.filter(function(element,index,array){
+     if(element.length>2){
+      return true;
+     }
+     return false;
+ })
+console.log(arr3);
+
+
+//map()有返回值，返回什么都添加到新数组中。它的返回值是一个新的数组
+var arr4=arr2.map(function(element,index,array){
+     return element+="你好";
+} )
+console.log(arr4);
+//将数组中所有元素的索引值加一返回。
+var arr5=arr2.map(function(element,index,array){
+    return index+=1;
+})
+console.log(arr5);
+
+console.log(arr6);
+//some()有一项返回true,则返回true
+var flag=arr2.some(function(element,index,array){
+    if(element.length>2){
+        return true;
+    }
+    return false;
+})
+console.log(flag);
+</script>
+
+<body>
+
+</body>
+
+</html>
